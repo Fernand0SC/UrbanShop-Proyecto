@@ -21,4 +21,5 @@
 ### Cómo ejecutar
 1. Asegurarse de tener MySQL corriendo.
 2. Crear una base de datos distinta para cada microservicio.
+    Cliente = db_UrbanShop_Cliente
 3. En la carpeta de cada microservicio, correr el programa
