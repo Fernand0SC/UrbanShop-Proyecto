@@ -1,5 +1,6 @@
 package com.urbanshop.cliente.controller;
 
+import com.urbanshop.cliente.dto.WishlistDTO;
 import com.urbanshop.cliente.model.Cliente;
 import com.urbanshop.cliente.service.ClienteService;
 import jakarta.validation.Valid;
@@ -62,4 +63,17 @@ public class ClienteController {
         }
         return ResponseEntity.notFound().build();
     }
+    // metodo para conexion a wishlist en postman
+    @GetMapping("/{id}/wishlist")
+    public ResponseEntity<List<WishlistDTO>> obtenerWishlistDeCliente(@PathVariable Long id) {
+        try {
+            log.info("Buscando wishlist para el cliente ID: {}", id);
+            List<WishlistDTO> wishlist = clienteService.obtenerFavoritosDeCliente(id);
+            return ResponseEntity.ok(wishlist);
+        } catch (RuntimeException e) {
+            log.error("Error: {}", e.getMessage());
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
