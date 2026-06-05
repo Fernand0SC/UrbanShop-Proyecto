@@ -20,7 +20,7 @@ public class OrdenesService {
     @Autowired
     private PagoCliente pagoCliente;
 
-    // 1. Único método para crear la orden
+
     public Ordenes crearOrden(OrdenesRequestDTO dto) {
         log.info("Iniciando creación de orden para cliente: {}", dto.getCliente());
 
@@ -34,7 +34,7 @@ public class OrdenesService {
         return guardada;
     }
 
-    // 2. Único método para pagar la orden
+
     public Ordenes pagarOrden(Long ordenId) {
         log.info("Iniciando proceso de pago para la orden ID: {}", ordenId);
 

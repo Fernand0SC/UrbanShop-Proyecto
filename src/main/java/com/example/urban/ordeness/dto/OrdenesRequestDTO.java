@@ -10,7 +10,7 @@ public class OrdenesRequestDTO {
     @NotBlank(message = "El nombre del cliente es obligatorio. ")
     private String cliente;
 
-    @NotNull(message = "El total es obligatorio")
+    @NotNull(message = "El total es obligatorio.")
     @Positive(message = "El total debe ser mayor a cero")
     private Double total;
 }
