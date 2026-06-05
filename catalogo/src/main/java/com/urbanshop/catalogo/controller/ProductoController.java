@@ -69,7 +69,7 @@ public class ProductoController {
     public ResponseEntity<?> descontarStock(@PathVariable Long id, @RequestParam Integer cantidad) {
         try {
             log.info("Descontando {} unidades del producto ID: {}", cantidad, id);
-            Producto productoActualizado = productoService.descontarStock(id, cantidad);
+            Producto productoActualizado =  productoService.descontarStock(id, cantidad);
             return ResponseEntity.ok(productoActualizado);
         } catch (RuntimeException e) {
             log.error("Error al descontar stock: {}", e.getMessage());
