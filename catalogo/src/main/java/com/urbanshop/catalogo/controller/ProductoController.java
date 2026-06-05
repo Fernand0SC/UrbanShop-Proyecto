@@ -65,6 +65,18 @@ public class ProductoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/{id}/descontar-stock")
+    public ResponseEntity<?> descontarStock(@PathVariable Long id, @RequestParam Integer cantidad) {
+        try {
+            log.info("Descontando {} unidades del producto ID: {}", cantidad, id);
+            Producto productoActualizado = productoService.descontarStock(id, cantidad);
+            return ResponseEntity.ok(productoActualizado);
+        } catch (RuntimeException e) {
+            log.error("Error al descontar stock: {}", e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarProducto(@PathVariable Long id) {
         if (productoService.findById(id).isPresent()) {
