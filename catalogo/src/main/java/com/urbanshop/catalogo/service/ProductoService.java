@@ -39,4 +39,20 @@ public class ProductoService {
     public List<Producto> buscarConStockDisponible() {
         return productoRepository.findByStockGreaterThan(0);
     }
+
+    // Metodo nuevo para restar stock cuando se realice una venta
+    public Producto descontarStock(Long id, Integer cantidadComprada) {
+        // Buscar el producto
+        Producto producto = findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+        // Verificamos que haya stock
+        if (producto.getStock() < cantidadComprada) {
+            throw new RuntimeException("Stock insuficiente para realizar la venta");
+        }
+
+        // Restamos el stock y guardamos
+        producto.setStock(producto.getStock() - cantidadComprada);
+        return save(producto);
+    }
 }
